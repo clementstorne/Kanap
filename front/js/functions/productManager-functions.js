@@ -123,14 +123,22 @@ function displayProductInCart(id, productQuantity, productColor, productPrice) {
       const input = createNumberInput("itemQuantity", 1, 100, productQuantity);
       input.classList.add("itemQuantity");
       divQuantity.appendChild(input);
+      // On écoute le changement de quantité et on modifie dans le LS avec la fonction changeProductQuantity
+      input.addEventListener("change", function (event) {
+        changeProductQuantity(id, productColor, event.target.value);
+      });
       // Ajoute la div .cart__item__content__settings__delete dans la div .cart__item__content__settings
       const divDelete = createDiv();
       divDelete.classList.add("cart__item__content__settings__delete");
       divSettings.appendChild(divDelete);
-      // Ajoute le bouton du suppression d'un article dans la div .cart__item__content__settings__delete
+      // Ajoute le bouton de suppression d'un article dans la div .cart__item__content__settings__delete
       const deleteButton = createParagraph("Supprimer");
       deleteButton.classList.add("deleteItem");
       divDelete.appendChild(deleteButton);
+      // On écoute le clic sur le bouton de suppression et on modifie dans le LS avec la fonction removeFromCart
+      deleteButton.addEventListener("click", function () {
+        removeFromCart(id, productColor);
+      });
     })
     .catch(function (erreur) {
       alert(erreur);

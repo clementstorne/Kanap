@@ -42,7 +42,7 @@ function addToCart(product) {
     product.quantity = parseInt(productQuantity.value);
     cart.push(product);
   }
-  // On sauvegarde le panier
+  // Sauvegarde le panier
   saveCart(cart);
 }
 
@@ -65,6 +65,44 @@ function displayCart() {
   }
 }
 
+// Fonction qui retire un article du panier
+function removeFromCart(productId, productColor) {
+  // Récupère le panier
+  let cart = getCart();
+  // Garder tous les articles dont le couple id/color est différent de celui saisi
+  cart = cart.filter((p) => !(p.id === productId && p.color === productColor));
+  // Sauvegarde le panier
+  saveCart(cart);
+  // On affiche un message de confirmation pour l'utilisateur
+  alert("Le produit a bien été supprimé du panier");
+  // Actualise la page
+  document.location.reload();
+}
+
+// Fonction qui change la quantité d'un produit
+function changeProductQuantity(productId, productColor, quantity) {
+  // Récupère le panier
+  let cart = getCart();
+  // Vérifie si le produit n'est pas déjà dans le panier (même id et même couleur)
+  let productAlreadyInCart = cart.find(
+    (p) => p.id === productId && p.color === productColor
+  );
+  // Si le produit est déjà dans le panier, on ajoute la nouvelle quantité à la quantité déjà dans le panier
+  if (productAlreadyInCart !== undefined) {
+    productAlreadyInCart.quantity = quantity;
+    // Si la quantité est négative ou nulle, on supprime l'article du panier
+    if (productAlreadyInCart.quantity <= 0) {
+      removeFromCart(productAlreadyInCart.id, productAlreadyInCart.color);
+    }
+    // Sauvegarde le panier
+    else {
+      saveCart(cart);
+    }
+  }
+  // Actualise la page
+  document.location.reload();
+}
+
 // Fonction qui compte et affiche le nombre d'articles
 function numberOfItems() {
   // Récupère le panier
@@ -73,7 +111,7 @@ function numberOfItems() {
   let countItems = 0;
   // Incrémente le compteur avec la quantité de chaque référence du panier
   for (let i = 0; i < cart.length; i++) {
-    countItems += cart[i].quantity;
+    countItems += cart[i].quantity * 1;
   }
   // Affiche le nombre d'articles dans le span #totalQuantity
   document.getElementById("totalQuantity").innerText = `${countItems}`;
@@ -91,31 +129,4 @@ function totalPrice() {
   }
   // Affiche le nombre d'articles dans le span #totalPrice
   document.getElementById("totalPrice").innerText = `${total}`;
-}
-
-// Fonction qui retire un article du panier
-function removeFromCart(product) {
-  let cart = getCart();
-  cart = cart.filter((p) => p.id !== product.id);
-  saveCart(cart);
-}
-
-// Fonction qui change la quantité d'un produit
-function changeProductQuantity(product, quantity) {
-  // Récupère le panier
-  let cart = getCart();
-  // Vérifie si le produit est déjà dans le panier
-  let productAlreadyInCart = cart.find((p) => p.id == product.id);
-  // Si le produit est déjà dans le panier, on ajoute la nouvelle quantité à la quantité déjà dans le panier
-  if (productAlreadyInCart !== undefined) {
-    productAlreadyInCart.quantity += quantity;
-    // Si la quantité est négative ou nulle, on supprime l'article du panier
-    if (productAlreadyInCart <= 0) {
-      removeFromCart(productAlreadyInCart);
-    }
-    // On sauvegarde le panier
-    else {
-      saveCart(cart);
-    }
-  }
 }
