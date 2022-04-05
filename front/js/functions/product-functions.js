@@ -12,7 +12,6 @@ function getProduct(id) {
         altText: data.altTxt,
         price: data.price,
       };
-      // console.log(product);
       return product;
     })
     .catch(function (erreur) {
