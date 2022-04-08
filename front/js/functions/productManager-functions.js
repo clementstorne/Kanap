@@ -1,20 +1,17 @@
+// Fonction qui crée la carte d'un produit
 function createProductCard(productId, urlImage, altImage, titre, description) {
   // Création du lien vers la page produit
-  const productCard = createLink(`./product.html?id=${productId}`);
-  document.getElementById("items").appendChild(productCard);
+  const productCard = createLink(`./product.html?id=${productId}`, document.getElementById("items"));
   // Création de la carte produit
-  const article = createArticle();
-  productCard.appendChild(article);
+  const article = createArticle(productCard);
   //  Ajout de l'image à la carte produit
-  article.appendChild(createImage(urlImage, altImage));
+  createImage(urlImage, altImage, article);
   // Ajout du nom à la carte produit
-  const productName = createTitle(3, `${titre}`);
-  productName.classList.add("productName");
-  article.appendChild(productName);
+  const productName = createTitle(3, `${titre}`, article, "productName");
+  // productName.classList.add("productName");
+  // article.appendChild(productName);
   // Ajout de la description à la carte produit
-  const productDescription = createParagraph(`${description}`);
-  productDescription.classList.add("productName");
-  article.appendChild(productDescription);
+  const productDescription = createParagraph(`${description}`, article, "productName");
 }
 
 const urlAPI = "http://localhost:3000/api/products";
@@ -48,15 +45,14 @@ function getProductId() {
 
 // Fonction qui affiche les éléments de la page produit
 function displayProductPage(id) {
-  fetch(`http://localhost:3000/api/products/${id}`)
+  let url = urlAPI + `/${id}`;
+  fetch(url)
     .then((reponse) => {
       return reponse.json();
     })
     .then((data) => {
       // Ajoute l'image dans la div avec la classe .item__img
-      document
-        .querySelector(".item__img")
-        .appendChild(createImage(data.imageUrl, data.altTxt));
+      createImage(data.imageUrl, data.altTxt, document.querySelector(".item__img"));
       // Ajoute le nom du produit dans le h1 #title
       document.getElementById("title").innerText = `${data.name}`;
       // Ajoute le prix du produit dans le span #price
@@ -65,9 +61,8 @@ function displayProductPage(id) {
       document.getElementById("description").innerText = `${data.description}`;
       // Ajoute les différentes options de couleur possibles
       for (let i = 0; i < data.colors.length; i++) {
-        document
-          .getElementById("colors")
-          .appendChild(createNewOption(`${data.colors[i]}`));
+        createNewOption(`${data.colors[i]}`, document.getElementById("colors"));
+        // document.getElementById("colors").appendChild(createNewOption(`${data.colors[i]}`));
       }
     })
     .catch(function (erreur) {
@@ -83,58 +78,39 @@ function displayProductInCart(id, productQuantity, productColor, productPrice) {
     })
     .then((data) => {
       // Ajoute un article dans la section #cart__item
-      const product = createArticle();
-      product.classList.add("cart__item");
+      const itemsInCart = document.getElementById("cart__items");
+      const product = createArticle(itemsInCart, "cart__item");
       product.setAttribute("data-id", `${id}`);
       product.setAttribute("data-color", `${productColor}`);
-      document.getElementById("cart__items").appendChild(product);
       // Ajoute la div .cart__item__img dans l'article
-      const divImg = createDiv();
-      divImg.classList.add("cart__item__img");
-      product.appendChild(divImg);
+      const divImg = createDiv(product, "cart__item__img");
       //   Ajoute l'image du produit dans la div .cart__item__img
-      divImg.appendChild(createImage(data.imageUrl, data.altTxt));
+      createImage(data.imageUrl, data.altTxt,divImg);
       // Ajoute la div .cart__item__content dans l'article
-      const divContent = createDiv();
-      divContent.classList.add("cart__item__content");
-      product.appendChild(divContent);
+      const divContent = createDiv(product, "cart__item__content");
       // Ajoute la div .cart__item__content__description dans la div .cart__item__content
-      const divDescription = createDiv();
-      divDescription.classList.add("cart__item__content__description");
-      divContent.appendChild(divDescription);
+      const divDescription = createDiv(divContent,"cart__item__content__description");
       // Ajout du nom du produit
-      divDescription.appendChild(createTitle(2, `${data.name}`));
+      createTitle(2, `${data.name}`,divDescription);
       // Ajout de la couleur du produit
-      divDescription.appendChild(createParagraph(`${productColor}`));
+      createParagraph(`${productColor}`,divDescription);
       // Ajout du prix total pour cette référence
-      divDescription.appendChild(
-        createParagraph(`${productPrice * productQuantity} €`)
-      );
+      createParagraph(`${productPrice * productQuantity} €`,divDescription);
       // Ajoute la div .cart__item__content__settings dans l'article
-      const divSettings = createDiv();
-      divSettings.classList.add("cart__item__content__settings");
-      product.appendChild(divSettings);
+      const divSettings = createDiv(product, "cart__item__content__settings");
       // Ajoute la div .cart__item__content__settings__quantity dans la div .cart__item__content__settings
-      const divQuantity = createDiv();
-      divQuantity.classList.add("cart__item__content__settings__quantity");
-      divSettings.appendChild(divQuantity);
+      const divQuantity = createDiv(divSettings,"cart__item__content__settings__quantity");
       // Ajoute la gestion de la quantité dans la div .cart__item__content__settings__quantity
-      divQuantity.appendChild(createParagraph("Qté : "));
-      const input = createNumberInput("itemQuantity", 1, 100, productQuantity);
-      input.classList.add("itemQuantity");
-      divQuantity.appendChild(input);
+      createParagraph("Qté : ",divQuantity);
+      const input = createNumberInput("itemQuantity",1,100,productQuantity,divQuantity,"itemQuantity");
       // On écoute le changement de quantité et on modifie dans le LS avec la fonction changeProductQuantity
       input.addEventListener("change", function (event) {
         changeProductQuantity(id, productColor, event.target.value);
       });
       // Ajoute la div .cart__item__content__settings__delete dans la div .cart__item__content__settings
-      const divDelete = createDiv();
-      divDelete.classList.add("cart__item__content__settings__delete");
-      divSettings.appendChild(divDelete);
+      const divDelete = createDiv(divSettings,"cart__item__content__settings__delete");
       // Ajoute le bouton de suppression d'un article dans la div .cart__item__content__settings__delete
-      const deleteButton = createParagraph("Supprimer");
-      deleteButton.classList.add("deleteItem");
-      divDelete.appendChild(deleteButton);
+      const deleteButton = createParagraph("Supprimer",divDelete,"deleteItem");
       // On écoute le clic sur le bouton de suppression et on modifie dans le LS avec la fonction removeFromCart
       deleteButton.addEventListener("click", function () {
         removeFromCart(id, productColor);

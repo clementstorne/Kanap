@@ -13,9 +13,7 @@ function isTextValid(str) {
 // Fonction qui affiche un message d'erreur si le prénom est invalide
 function firstNameChecker(str) {
   if (isTextValid(str)) {
-    document.getElementById("firstNameErrorMsg").innerText =
-      "Ce prénom est valide";
-    document.getElementById("firstNameErrorMsg").style.color = "blue";
+    document.getElementById("firstNameErrorMsg").innerText = "";
   } else {
     document.getElementById("firstNameErrorMsg").innerText =
       "Ce prénom n'est pas valide";
@@ -37,8 +35,7 @@ function getLastName() {
 // Fonction qui affiche un message d'erreur si le nom est invalide
 function lastNameChecker(str) {
   if (isTextValid(str)) {
-    document.getElementById("lastNameErrorMsg").innerText = "Ce nom est valide";
-    document.getElementById("lastNameErrorMsg").style.color = "blue";
+    document.getElementById("lastNameErrorMsg").innerText = "";
   } else {
     document.getElementById("lastNameErrorMsg").innerText =
       "Ce nom n'est pas valide";
@@ -66,9 +63,7 @@ function isAdressValid(str) {
 // Fonction qui affiche un message d'erreur si l'adresse est invalide
 function adressChecker(str) {
   if (isAdressValid(str)) {
-    document.getElementById("addressErrorMsg").innerText =
-      "Cette adresse est valide";
-    document.getElementById("addressErrorMsg").style.color = "blue";
+    document.getElementById("addressErrorMsg").innerText = "";
   } else {
     document.getElementById("addressErrorMsg").innerText =
       "Cette adresse n'est pas valide";
@@ -88,9 +83,7 @@ function getCity() {
 // Fonction qui affiche un message d'erreur si la ville est invalide
 function cityChecker(str) {
   if (isTextValid(str)) {
-    document.getElementById("cityErrorMsg").innerText =
-      "Cette ville est valide";
-    document.getElementById("cityErrorMsg").style.color = "blue";
+    document.getElementById("cityErrorMsg").innerText = "";
   } else {
     document.getElementById("cityErrorMsg").innerText =
       "Cette ville n'est pas valide";
@@ -109,17 +102,14 @@ function getEmail() {
 
 // Fonction qui teste si l'email est valide
 function isEmailValid(str) {
-  let regex =
-    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
+  let regex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
   return regex.test(str);
 }
 
 // Fonction qui affiche un message d'erreur si l'email est invalide
 function emailChecker(str) {
   if (isEmailValid(str)) {
-    document.getElementById("emailErrorMsg").innerText =
-      "Cette adresse email est valide";
-    document.getElementById("emailErrorMsg").style.color = "blue";
+    document.getElementById("emailErrorMsg").innerText = "";
   } else {
     document.getElementById("emailErrorMsg").innerText =
       "Cette adresse email n'est pas valide";
@@ -183,7 +173,8 @@ document.getElementById("order").addEventListener("click", function (event) {
     // On crée l'objet order qui sera envoyé à l'API
     let order = { contact, products };
     // On envoie les données à l'API
-    fetch("http://localhost:3000/api/products/order", {
+    let url = urlAPI + "/order";
+    fetch(url, {
       method: "POST",
       headers: {
         Accept: "application/json",
