@@ -107,8 +107,18 @@ h2 {
   border: 0;
   height: 26px;
   margin-top: 4px;
+  position: relative;
 }
 .cart__order__form__question input:focus {
+  outline: none;
+}
+.cart__order__form__question textarea {
+  border-radius: 13px;
+  border: 0;
+  resize : none;
+  margin-top: 4px;
+}
+.cart__order__form__question textarea:focus {
   outline: none;
 }
 .cart__order__form__question p {
@@ -181,6 +191,10 @@ h2 {
 }
 
 input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+textarea:invalid {
   box-shadow: 0 0 5px 1px red;
 }
 

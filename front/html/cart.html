@@ -85,7 +85,7 @@
             <div class="cart__order">
               <form method="get" class="cart__order__form">
                 <div class="cart__order__form__question">
-                  <label for="firstName">Prénom: </label>
+                  <label for="firstName">Prénom : </label>
                   <input
                     type="text"
                     name="firstName"
@@ -96,7 +96,7 @@
                   <p id="firstNameErrorMsg"></p>
                 </div>
                 <div class="cart__order__form__question">
-                  <label for="lastName">Nom: </label>
+                  <label for="lastName">Nom : </label>
                   <input
                     type="text"
                     name="lastName"
@@ -107,18 +107,25 @@
                   <p id="lastNameErrorMsg"></p>
                 </div>
                 <div class="cart__order__form__question">
-                  <label for="address">Adresse: </label>
-                  <input
+                  <label for="address">Adresse : </label>
+                  <textarea
+                    name="address"
+                    id="address"
+                    rows="4"
+                    required
+                    placeholder="42 avenue des Champs Elysées"
+                  ></textarea>
+                  <!-- <input
                     type="text"
                     name="address"
                     id="address"
                     required
                     placeholder="42 avenue des Champs Elysées"
-                  />
+                  /> -->
                   <p id="addressErrorMsg"></p>
                 </div>
                 <div class="cart__order__form__question">
-                  <label for="city">Ville: </label>
+                  <label for="city">Ville : </label>
                   <input
                     type="text"
                     name="city"
@@ -131,13 +138,13 @@
                   <p id="cityErrorMsg"></p>
                 </div>
                 <div class="cart__order__form__question">
-                  <label for="email">Email: </label>
+                  <label for="email">Email : </label>
                   <input
                     type="email"
                     name="email"
                     id="email"
                     required
-                    placeholder="jeandupot@me.fr"
+                    placeholder="jeandupont@me.fr"
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   />
                   <span class="validity"></span>
