@@ -73,6 +73,23 @@
 .item__content__settings__quantity input:focus {
 	outline: none;
 }
+.item__content__settings__color,
+.item__content__settings__quantity {
+	position: relative;
+}
+.item__content__settings__color i,
+.item__content__settings__quantity i {
+	position: absolute;
+	right: 0px;
+	font-size: 20px;
+}
+.item__content__settings__color p,
+.item__content__settings__quantity p {
+	margin: 0;
+	color: #080708;
+	font-size: 15px;
+	margin-left: 8px;
+  }
 .item__content__addButton {
 	display: flex;
 	justify-content: center;
@@ -90,10 +107,6 @@
 .item__content__addButton button:hover {
 	box-shadow: rgba(42, 18, 206, 0.9) 0 0 22px 6px;
 }
-
-
-
-
 
 /***************/
 /*Media queries*/

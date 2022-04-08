@@ -51,6 +51,8 @@ function displayProductPage(id) {
       return reponse.json();
     })
     .then((data) => {
+      // Modifie le titre de la page
+      document.title = `${data.name}`;
       // Ajoute l'image dans la div avec la classe .item__img
       createImage(data.imageUrl, data.altTxt, document.querySelector(".item__img"));
       // Ajoute le nom du produit dans le h1 #title
