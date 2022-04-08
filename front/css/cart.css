@@ -102,6 +102,13 @@ h2 {
   margin-bottom: 25px;
   position: relative;
 }
+.cart__order__form__question i {
+	position: absolute;
+	right: 0px;
+  top: 28px;
+	font-size: 20px;
+  translate: 30px;
+}
 .cart__order__form__question input {
   border-radius: 13px;
   border: 0;
@@ -123,7 +130,7 @@ h2 {
 }
 .cart__order__form__question p {
   margin: 0;
-  color: #fbbcbc;
+  color: #080708;
   font-size: 15px;
   margin-left: 8px;
 }
@@ -188,32 +195,4 @@ h2 {
 }
 *:focus::placeholder {
   opacity: 0;
-}
-
-input:invalid {
-  box-shadow: 0 0 5px 1px red;
-}
-
-textarea:invalid {
-  box-shadow: 0 0 5px 1px red;
-}
-
-input:invalid + span:after {
-  content: "✖";
-  color: red;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 26px;
-  padding-right: 5px;
-}
-
-input:valid + span:after {
-  content: "✓";
-  color: green;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 26px;
-  padding-right: 5px;
 }
