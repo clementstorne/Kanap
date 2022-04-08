@@ -164,6 +164,31 @@ function addressChecker() {
       validIcon(errorIcon);
     }
   }
+
+  // Fonction qui teste si le code postal est valide
+  function isZipcodeValid(str) {
+    let regex = /^[0-8]+[1-9]+[0-9]{3}$|^9[0-7]+[0-9]{3}$|^98000$/;
+    return regex.test(str);
+  }
+  
+  // Fonction qui vérifie la cohérence du nom
+function zipcodeChecker() {
+    const zipcode = document.getElementById("zipcode");
+    const errorMessage = document.getElementById('zipcodeErrorMsg');
+    const errorIcon = document.getElementById('zipcodeIcon');
+    // Si la saisie est incorrecte, on affiche une bordure rouge, un message et une icone d'erreur
+    if (isZipcodeValid(zipcode.value.trim()) === false) {
+      zipcode.style.border = '2px solid #e74c3c';
+      errorMessage.innerText = "Le code postal doit contenir 5 chiffres et être compris entre 01000 et 98000";
+      invalidIcon(errorIcon);
+    }
+    // Sinon, on efface le message d'erreur, on affiche une bordure verte et une icone de validation
+    else {
+        zipcode.style.border = '2px solid #2ecc71';
+      clearMessage(errorMessage);
+      validIcon(errorIcon);
+    }
+  }
   
   // Fonction qui récupère la ville
   function getCity() {
@@ -239,6 +264,7 @@ function emailChecker() {
     firstNameChecker();
     lastNameChecker();
     addressChecker();
+    zipcodeChecker();
     cityChecker();
     emailChecker();
   }
