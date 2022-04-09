@@ -55,12 +55,10 @@ function displayCart() {
     let productId = cart[i].id;
     let productQuantity = cart[i].quantity;
     let productColor = cart[i].color;
-    let productPrice = cart[i].price;
     displayProductInCart(
       productId,
       productQuantity,
-      productColor,
-      productPrice
+      productColor
     );
   }
 }

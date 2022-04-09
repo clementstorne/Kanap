@@ -73,8 +73,9 @@ function displayProductPage(id) {
 }
 
 // Fonction qui affiche un produit dans le panier
-function displayProductInCart(id, productQuantity, productColor, productPrice) {
-  fetch(`http://localhost:3000/api/products/${id}`)
+function displayProductInCart(id, productQuantity, productColor) {
+  let url = urlAPI + `/${id}`;
+  fetch(url)
     .then((reponse) => {
       return reponse.json();
     })
@@ -97,7 +98,7 @@ function displayProductInCart(id, productQuantity, productColor, productPrice) {
       // Ajout de la couleur du produit
       createParagraph(`${productColor}`,divDescription);
       // Ajout du prix total pour cette référence
-      createParagraph(`${productPrice * productQuantity} €`,divDescription);
+      createParagraph(`${data.price * productQuantity} €`,divDescription);
       // Ajoute la div .cart__item__content__settings dans l'article
       const divSettings = createDiv(product, "cart__item__content__settings");
       // Ajoute la div .cart__item__content__settings__quantity dans la div .cart__item__content__settings
