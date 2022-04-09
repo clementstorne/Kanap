@@ -1,4 +1,4 @@
-// Fonction qui teste si un nombre est compris entre 1 et 100
+// Fonction qui teste si un nombre est un entier
 function isAnInteger(str) {
   let regex = /[0-9]+/;
   return regex.test(str);

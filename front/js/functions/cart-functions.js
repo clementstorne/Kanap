@@ -71,8 +71,6 @@ function removeFromCart(productId, productColor) {
   cart = cart.filter((p) => !(p.id === productId && p.color === productColor));
   // Sauvegarde le panier
   saveCart(cart);
-  // On affiche un message de confirmation pour l'utilisateur
-  alert("Le produit a bien été supprimé du panier");
   // Actualise la page
   document.location.reload();
 }
@@ -81,12 +79,14 @@ function removeFromCart(productId, productColor) {
 function changeProductQuantity(productId, productColor, quantity) {
   // Récupère le panier
   let cart = getCart();
-  // Vérifie si le produit n'est pas déjà dans le panier (même id et même couleur)
+  // Retrouve le produit dans le panier
   let productAlreadyInCart = cart.find(
     (p) => p.id === productId && p.color === productColor
   );
-  // Si le produit est déjà dans le panier, on ajoute la nouvelle quantité à la quantité déjà dans le panier
-  if (productAlreadyInCart !== undefined) {
+  // On vérifie qu'un entier a bien été saisi
+  if (isAnInteger(quantity) === false) {
+  } else {
+    // On ajoute la nouvelle quantité à la quantité déjà dans le panier
     productAlreadyInCart.quantity = quantity;
     // Si la quantité est négative ou nulle, on supprime l'article du panier
     if (productAlreadyInCart.quantity <= 0) {
@@ -96,9 +96,9 @@ function changeProductQuantity(productId, productColor, quantity) {
     else {
       saveCart(cart);
     }
-  }
   // Actualise la page
   document.location.reload();
+  }
 }
 
 // Fonction qui compte et affiche le nombre d'articles
