@@ -1,11 +1,16 @@
-// Fonction qui enregistre le panier dans le localStorage
+import * as productManager from  "/clement/ClementStorne_5_25032022/front/js/functions/productManager-functions.js";
+
+
+
+// // Fonction qui enregistre le panier dans le localStorage
 // JSON.stringify convertit une valeur JavaScript en chaîne JSON
-function saveCart(cart) {
+export function saveCart(cart) {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 // Fonction qui récupère le panier dans le localStorage
-function getCart() {
+export function getCart() {
+    
   let cart = localStorage.getItem("cart");
   // Si le panier n'existe pas, renvoyer un tableau vide
   if (cart === null) {
@@ -19,14 +24,14 @@ function getCart() {
 }
 
 // Fonction qui vide le panier
-function emptyCart() {
+export function emptyCart() {
   let cart = getCart();
   cart = [];
   saveCart(cart);
 }
 
 // Fonction qui ajoute un article au panier
-function addToCart(product) {
+export function addToCart( product,productQuantity) {
   // Récupère le panier
   let cart = getCart();
   // Vérifie si le produit n'est pas déjà dans le panier (même id et même couleur)
@@ -41,21 +46,23 @@ function addToCart(product) {
   else {
     product.quantity = parseInt(productQuantity.value);
     cart.push(product);
+    
   }
   // Sauvegarde le panier
   saveCart(cart);
 }
 
 // Fonction qui affiche le contenu du panier
-function displayCart() {
+export function displayCart() {
   // Récupère le panier
   let cart = getCart();
+  
   // Pour chaque article dans le panier, on affiche ses informations
   for (let i = 0; i < cart.length; i++) {
     let productId = cart[i].id;
     let productQuantity = cart[i].quantity;
     let productColor = cart[i].color;
-    displayProductInCart(
+    productManager.displayProductInCart(
       productId,
       productQuantity,
       productColor
@@ -64,7 +71,7 @@ function displayCart() {
 }
 
 // Fonction qui retire un article du panier
-function removeFromCart(productId, productColor) {
+export function removeFromCart(productId, productColor) {
   // Récupère le panier
   let cart = getCart();
   // Garder tous les articles dont le couple id/color est différent de celui saisi
@@ -76,7 +83,7 @@ function removeFromCart(productId, productColor) {
 }
 
 // Fonction qui change la quantité d'un produit
-function changeProductQuantity(productId, productColor, quantity) {
+export function changeProductQuantity(productId, productColor, quantity) {
   // Récupère le panier
   let cart = getCart();
   // Retrouve le produit dans le panier
@@ -102,7 +109,7 @@ function changeProductQuantity(productId, productColor, quantity) {
 }
 
 // Fonction qui compte et affiche le nombre d'articles
-function numberOfItems() {
+export function numberOfItems() {
   // Récupère le panier
   let cart = getCart();
   // Crée un compteur
@@ -116,7 +123,7 @@ function numberOfItems() {
 }
 
 // Fonction qui calcule et affiche le prix total
-function totalPrice() {
+export function totalPrice() {
   // Récupère le panier
   let cart = getCart();
   // Crée un compteur

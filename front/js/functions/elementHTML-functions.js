@@ -1,5 +1,5 @@
 // Fonction qui ajoute une image dans le DOM
-function createImage(urlImage, altImage, parent, classToAdd) {
+export function createImage(urlImage, altImage, parent, classToAdd) {
   const image = document.createElement("img");
   image.setAttribute("src", `${urlImage}`);
   image.setAttribute("alt", `${altImage}`);
@@ -9,7 +9,7 @@ function createImage(urlImage, altImage, parent, classToAdd) {
 }
 
 // Fonction qui ajoute un lien dans le DOM
-function createLink(href, parent, classToAdd) {
+export function createLink(href, parent, classToAdd) {
   const link = document.createElement("a");
   link.setAttribute("href", `${href}`);
   parent.appendChild(link);
@@ -18,7 +18,7 @@ function createLink(href, parent, classToAdd) {
 }
 
 // Fonction qui ajoute un article dans le DOM
-function createArticle(parent, classToAdd) {
+export function createArticle(parent, classToAdd) {
   const article = document.createElement("article");
   parent.appendChild(article);
   article.classList.add(classToAdd);
@@ -26,7 +26,7 @@ function createArticle(parent, classToAdd) {
 }
 
 // Fonction qui ajoute un titre dans le DOM
-function createTitle(level, content, parent, classToAdd) {
+export function createTitle(level, content, parent, classToAdd) {
   const title = document.createElement(`h${level}`);
   title.innerText = `${content}`;
   parent.appendChild(title);
@@ -35,7 +35,7 @@ function createTitle(level, content, parent, classToAdd) {
 }
 
 // Fonction qui ajoute un paragraphe dans le DOM
-function createParagraph(content, parent, classToAdd) {
+export function createParagraph(content, parent, classToAdd) {
   const paragraph = document.createElement("p");
   paragraph.innerText = `${content}`;
   parent.appendChild(paragraph);
@@ -44,7 +44,7 @@ function createParagraph(content, parent, classToAdd) {
 }
 
 // Fonction qui crée une nouvelle option
-function createNewOption(value,parent) {
+export function createNewOption(value,parent) {
   const newOption = document.createElement("option");
   newOption.setAttribute("value", `${value}`);
   newOption.innerText = `${value}`;
@@ -53,7 +53,7 @@ function createNewOption(value,parent) {
 }
 
 // Fonction qui ajoute une div dans le DOM
-function createDiv(parent, classToAdd) {
+export function createDiv(parent, classToAdd) {
   const div = document.createElement("div");
   parent.appendChild(div);
   div.classList.add(classToAdd);
@@ -61,7 +61,7 @@ function createDiv(parent, classToAdd) {
 }
 
 // Fonction qui ajoute un input dans le DOM
-function createNumberInput(name, min, max, value, parent, classToAdd) {
+export function createNumberInput(name, min, max, value, parent, classToAdd) {
   const input = document.createElement("input");
   input.setAttribute("type", "number");
   input.setAttribute("name", `${name}`);

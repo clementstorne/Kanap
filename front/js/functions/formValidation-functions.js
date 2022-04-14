@@ -1,34 +1,36 @@
+import * as cart from "/clement/ClementStorne_5_25032022/front/js/functions/cart-functions.js";
+
 // Fonction qui teste si un nombre est un entier
-function isAnInteger(str) {
+export function isAnInteger(str) {
   let regex = /[0-9]+/;
   return regex.test(str);
 }
 
 // Fonction qui teste si un nombre est compris entre 1 et 100
-function isQuantityValid(str) {
+export function isQuantityValid(str) {
   let regex = /^[1-9]$|^[1-9][0-9]$|^(100)$/;
   return regex.test(str);
 }
 
 // Fonction qui efface les messages d'erreur
-function clearMessage(message) {
+export function clearMessage(message) {
   message.innerText = '';
 }
 
 // Fonction qui affiche l'icone d'erreur
-function invalidIcon(icon) {
+export function invalidIcon(icon) {
   icon.classList.add('fa-times-circle');
   icon.style.color = '#e74c3c';
 }
 
 // Fonction qui affiche l'icone OK
-function validIcon(icon) {
+export function validIcon(icon) {
   icon.classList.add('fa-check-circle');
   icon.style.color = '#2ecc71';
 }
 
 // Fonction qui vérifie si une couleur a été choisie
-function colorChecker() {
+export function colorChecker() {
   const productColor = document.getElementById("colors");
   const errorMessage = document.getElementById('colorErrorMsg');
   const errorIcon = document.getElementById('colorIcon');
@@ -47,7 +49,7 @@ function colorChecker() {
 }
 
 // Fonction qui vérifie la cohérence de la quantité
-function quantityChecker() {
+export function quantityChecker(productQuantity) {
   const errorMessage = document.getElementById('quantityErrorMsg');
   const errorIcon = document.getElementById('quantityIcon');
   // Si la valeur saisie n'est pas un nombre, on affiche un message d'erreur
@@ -71,7 +73,7 @@ function quantityChecker() {
 }
 
 // Fonction qui affiche un message de confirmation
-function confirmationMessage() {
+export function confirmationMessage() {
   let message = document.getElementById('confirmationMessage');
   message.style.color = '#2B3E4F';
   message.style.textAlign = 'center';
@@ -81,7 +83,7 @@ function confirmationMessage() {
 }
 
 // Fonction qui récupère le prénom
-function getFirstName() {
+export function getFirstName() {
     return document.getElementById("firstName").value;
   }
   
@@ -93,7 +95,7 @@ function getFirstName() {
   }
   
 // Fonction qui vérifie la cohérence du prénom
-function firstNameChecker() {
+export function firstNameChecker() {
     const firstName = document.getElementById("firstName");
     const errorMessage = document.getElementById('firstNameErrorMsg');
     const errorIcon = document.getElementById('firstNameIcon');
@@ -112,12 +114,12 @@ function firstNameChecker() {
   }
   
   // Fonction qui récupère le nom
-  function getLastName() {
+ export  function getLastName() {
     return document.getElementById("lastName").value;
   }
 
   // Fonction qui vérifie la cohérence du nom
-function lastNameChecker() {
+export function lastNameChecker() {
     const lastName = document.getElementById("lastName");
     const errorMessage = document.getElementById('lastNameErrorMsg');
     const errorIcon = document.getElementById('lastNameIcon');
@@ -136,18 +138,18 @@ function lastNameChecker() {
   }
   
   // Fonction qui récupère l'adresse
-  function getAddress() {
+ export  function getAddress() {
     return document.getElementById("address").value;
   }
   
   // Fonction qui teste si l'adresse est valide
-  function isAddressValid(str) {
+export   function isAddressValid(str) {
     let regex = /[^\.\"\?\!\;\:\#\$\%\&\(\)\*\+\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+/;
     return regex.test(str);
   }
   
   // Fonction qui vérifie la cohérence du nom
-function addressChecker() {
+export function addressChecker() {
     const address = document.getElementById("address");
     const errorMessage = document.getElementById('addressErrorMsg');
     const errorIcon = document.getElementById('addressIcon');
@@ -166,13 +168,13 @@ function addressChecker() {
   }
 
   // Fonction qui teste si le code postal est valide
-  function isZipcodeValid(str) {
+ export  function isZipcodeValid(str) {
     let regex = /^[0-8]+[1-9]+[0-9]{3}$|^9[0-7]+[0-9]{3}$|^98000$/;
     return regex.test(str);
   }
   
   // Fonction qui vérifie la cohérence du nom
-function zipcodeChecker() {
+export function zipcodeChecker() {
     const zipcode = document.getElementById("zipcode");
     const errorMessage = document.getElementById('zipcodeErrorMsg');
     const errorIcon = document.getElementById('zipcodeIcon');
@@ -191,12 +193,12 @@ function zipcodeChecker() {
   }
   
   // Fonction qui récupère la ville
-  function getCity() {
+  export function getCity() {
     return document.getElementById("city").value;
   }
   
 // Fonction qui vérifie la cohérence de la ville
-function cityChecker() {
+export function cityChecker() {
     const city = document.getElementById("city");
     const errorMessage = document.getElementById('cityErrorMsg');
     const errorIcon = document.getElementById('cityIcon');
@@ -215,18 +217,18 @@ function cityChecker() {
   }
   
   // Fonction qui récupère l'email
-  function getEmail() {
+  export function getEmail() {
     return document.getElementById("email").value;
   }
   
   // Fonction qui teste si l'email est valide
-  function isEmailValid(str) {
+  export function isEmailValid(str) {
     let regex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
     return regex.test(str);
   }
   
 // Fonction qui vérifie la cohérence de l'email
-function emailChecker() {
+export function emailChecker() {
     const email = document.getElementById("email");
     const errorMessage = document.getElementById('emailErrorMsg');
     const errorIcon = document.getElementById('emailIcon');
@@ -245,7 +247,7 @@ function emailChecker() {
   }
   
   // Fonction qui vérifie l'ensemble du formulaire
-  function formChecker() {
+ export  function formChecker() {
     if (
       isTextValid(getFirstName()) &&
       isTextValid(getLastName()) &&
@@ -260,11 +262,33 @@ function emailChecker() {
   }
 
   // Fonction qui affiche les résultats des tests du formulaire
-  function testForm() {
+  export function testForm() {
     firstNameChecker();
     lastNameChecker();
     addressChecker();
     zipcodeChecker();
     cityChecker();
     emailChecker();
+  }
+  
+  export function validate(productQuantity,productColor, idProduct) {
+      // On effectue les vérifications
+    colorChecker();
+    quantityChecker(productQuantity);
+    // S'il y a une erreur de saisie, on interrompt le processus
+    if (isAnInteger(productQuantity.value) === false || isQuantityValid(productQuantity.value) === false || productColor.value === "") {
+      event.preventDefault();
+    }
+    else {
+      // On ajoute au panier l'id du produit, sa quantité et sa couleur
+      let product = {
+        id: idProduct,
+        quantity: productQuantity.value,
+        color: productColor.value,
+        price: document.getElementById("price").firstChild.data,
+      };
+      cart.addToCart(product, productQuantity);
+      // On affiche un message de confirmation pour l'utilisateur
+      confirmationMessage();
+    }
   }

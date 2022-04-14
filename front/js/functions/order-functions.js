@@ -1,5 +1,5 @@
 // Fonction qui crée un objet contact
-function createContact() {
+export function createContact() {
   const contact = {
     firstName: getFirstName(),
     lastName: getLastName(),
@@ -11,7 +11,7 @@ function createContact() {
 }
 
 // Fonction qui crée le tableau avec les id des produits
-function createProductsArray() {
+export function createProductsArray() {
   // Récupère le panier
   let cart = getCart();
   // On initialise le tableau
