@@ -165,6 +165,11 @@ function addressChecker() {
     }
   }
 
+  // Fonction qui récupère le code postal
+  function getZipCode() {
+    return document.getElementById("zipcode").value;
+  }
+
   // Fonction qui teste si le code postal est valide
   function isZipcodeValid(str) {
     let regex = /^[0-8]+[1-9]+[0-9]{3}$|^9[0-7]+[0-9]{3}$|^98000$/;
@@ -250,6 +255,7 @@ function emailChecker() {
       isTextValid(getFirstName()) &&
       isTextValid(getLastName()) &&
       isAddressValid(getAddress()) &&
+      isZipcodeValid(getZipCode()) &&
       isTextValid(getCity()) &&
       isEmailValid(getEmail())
     ) {
