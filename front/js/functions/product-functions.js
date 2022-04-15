@@ -101,11 +101,27 @@ function displayProductInCart(id, productQuantity, productColor) {
       // Ajoute la div .cart__item__content__settings__quantity dans la div .cart__item__content__settings
       const divQuantity = createDiv(divSettings,"cart__item__content__settings__quantity");
       // Ajoute la gestion de la quantité dans la div .cart__item__content__settings__quantity
-      createParagraph("Qté : ",divQuantity);
+      createParagraph("Qté : ", divQuantity);
       const input = createNumberInput("itemQuantity",1,100,productQuantity,divQuantity,"itemQuantity");
+      // Ajoute un paragraphe pour un éventuel message d'erreur
+      const inputErrorMessage = createParagraph("", divSettings, "errorMessage");
       // On écoute le changement de quantité et on modifie dans le LS avec la fonction changeProductQuantity
       input.addEventListener("change", function (event) {
-        changeProductQuantity(id, productColor, event.target.value);
+        // Si la valeur saisie n'est pas un nombre, on affiche un message d'erreur
+        if (isAnInteger(input.value) === false) {
+          input.style.border = '2px solid #e74c3c';
+          inputErrorMessage.innerText = 'La valeur saisie doit être un nombre';
+        }
+        // Si la valeur est inférieure à 1 ou supérieure à 100, on affiche un message d'erreur
+        else if (isQuantityValid(input.value) === false) {
+          input.style.border = '2px solid #e74c3c';
+          inputErrorMessage.innerText = 'La valeur saisie doit être comprise entre 1 et 100';
+        } 
+        // Sinon, on efface le message d'erreur, on affiche une bordure verte et une icone de validation
+        else {
+          clearMessage(inputErrorMessage);
+          changeProductQuantity(id, productColor, event.target.value);
+        }
       });
       // Ajoute la div .cart__item__content__settings__delete dans la div .cart__item__content__settings
       const divDelete = createDiv(divSettings,"cart__item__content__settings__delete");
