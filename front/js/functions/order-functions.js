@@ -44,17 +44,19 @@ document.getElementById("order").addEventListener("click", function (event) {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      // JSON.stringify convertit une valeur JavaScript en chaîne JSON
       body: JSON.stringify(order),
     })
-      .then((reponse) => {
-        return reponse.json();
+      .then((response) => {
+        // response.json() convertit l'objet Response en une chaîne JSON
+        return response.json();
       })
       .then((data) => {
         emptyCart();
         window.location = `./confirmation.html?orderId=${data.orderId}`;
       })
-      .catch(function (erreur) {
-        alert(erreur);
+      .catch(function (error) {
+        console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
       });
   }
 });

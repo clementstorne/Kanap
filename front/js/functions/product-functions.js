@@ -16,8 +16,9 @@ function createProductCard(productId, urlImage, altImage, titre, description) {
 
 function getProduct(id) {
   fetch(`http://localhost:3000/api/products/${id}`)
-    .then((reponse) => {
-      return reponse.json();
+    .then((response) => {
+      // response.json() convertit l'objet Response en une chaîne JSON
+      return response.json();
     })
     .then((data) => {
       const product = {
@@ -30,8 +31,8 @@ function getProduct(id) {
       };
       return product;
     })
-    .catch(function (erreur) {
-      alert(erreur);
+    .catch(function (error) {
+      console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
     });
 }
 
@@ -44,8 +45,9 @@ function getProductId() {
 function displayProductPage(id) {
   let url = urlAPI + `/${id}`;
   fetch(url)
-    .then((reponse) => {
-      return reponse.json();
+    .then((response) => {
+      // response.json() convertit l'objet Response en une chaîne JSON
+      return response.json();
     })
     .then((data) => {
       // Modifie le titre de la page
@@ -61,11 +63,10 @@ function displayProductPage(id) {
       // Ajoute les différentes options de couleur possibles
       for (let i = 0; i < data.colors.length; i++) {
         createNewOption(`${data.colors[i]}`, document.getElementById("colors"));
-        // document.getElementById("colors").appendChild(createNewOption(`${data.colors[i]}`));
       }
     })
-    .catch(function (erreur) {
-      alert(erreur);
+    .catch(function (error) {
+      console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
     });
 }
 
@@ -73,8 +74,9 @@ function displayProductPage(id) {
 function displayProductInCart(id, productQuantity, productColor) {
   let url = urlAPI + `/${id}`;
   fetch(url)
-    .then((reponse) => {
-      return reponse.json();
+    .then((response) => {
+      // response.json() convertit l'objet Response en une chaîne JSON
+      return response.json();
     })
     .then((data) => {
       // Ajoute un article dans la section #cart__item
@@ -132,7 +134,7 @@ function displayProductInCart(id, productQuantity, productColor) {
         removeFromCart(id, productColor);
       });
     })
-    .catch(function (erreur) {
-      alert(erreur);
+    .catch(function (error) {
+      console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
     });
 }
