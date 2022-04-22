@@ -19,6 +19,12 @@ function createProductCard(productId, urlImage, altImage, titre, description) {
   );
 }
 
+// Fonction qui récupère l'ID du produit dans l'URL de la page
+function getProductId() {
+  return new URL(location.href).searchParams.get("id");
+}
+
+// Fonction qui crée un article à partir de son id
 function getProduct(id) {
   fetch(`http://localhost:3000/api/products/${id}`)
     .then((response) => {
@@ -41,11 +47,6 @@ function getProduct(id) {
         "Il y a eu un problème avec l'opération fetch: " + error.message
       );
     });
-}
-
-// Fonction qui récupère l'ID du produit dans l'URL de la page
-function getProductId() {
-  return new URL(location.href).searchParams.get("id");
 }
 
 // Fonction qui affiche les éléments de la page produit
