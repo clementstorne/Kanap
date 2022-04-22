@@ -111,10 +111,10 @@ h2 {
   position: relative;
 }
 .cart__order__form__question i {
-	position: absolute;
-	right: 0px;
+  position: absolute;
+  right: 0px;
   top: 28px;
-	font-size: 20px;
+  font-size: 20px;
   translate: 30px;
 }
 .cart__order__form__question input {
@@ -130,7 +130,7 @@ h2 {
 .cart__order__form__question textarea {
   border-radius: 13px;
   border: 0;
-  resize : none;
+  resize: none;
   margin-top: 4px;
 }
 .cart__order__form__question textarea:focus {
