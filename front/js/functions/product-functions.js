@@ -11,8 +11,6 @@ function createProductCard(productId, urlImage, altImage, titre, description) {
   createImage(urlImage, altImage, article);
   // Ajout du nom à la carte produit
   const productName = createTitle(3, `${titre}`, article, "productName");
-  // productName.classList.add("productName");
-  // article.appendChild(productName);
   // Ajout de la description à la carte produit
   const productDescription = createParagraph(
     `${description}`,
