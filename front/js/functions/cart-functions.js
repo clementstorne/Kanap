@@ -80,8 +80,7 @@ function changeProductQuantity(productId, productColor, quantity) {
     (p) => p.id === productId && p.color === productColor
   );
   // On vérifie qu'un entier a bien été saisi
-  if (isAnInteger(quantity) === false) {
-  } else {
+  if (isAnInteger(quantity) === true) {
     // On remlplace la quantité déjà dans le panier par la nouvelle quantité
     productAlreadyInCart.quantity = quantity;
     // Si la quantité est négative ou nulle, on supprime l'article du panier
