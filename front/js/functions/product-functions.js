@@ -24,31 +24,6 @@ function getProductId() {
   return new URL(location.href).searchParams.get("id");
 }
 
-// Fonction qui crée un article à partir de son id
-function getProduct(id) {
-  fetch(`http://localhost:3000/api/products/${id}`)
-    .then((response) => {
-      // response.json() convertit l'objet Response en une chaîne JSON
-      return response.json();
-    })
-    .then((data) => {
-      const product = {
-        id: data._id,
-        name: data.name,
-        description: data.description,
-        urlImage: data.imageUrl,
-        altText: data.altTxt,
-        price: data.price,
-      };
-      return product;
-    })
-    .catch(function (error) {
-      console.log(
-        "Il y a eu un problème avec l'opération fetch: " + error.message
-      );
-    });
-}
-
 // Fonction qui affiche les éléments de la page produit
 function displayProductPage(id) {
   let url = urlAPI + `/${id}`;
