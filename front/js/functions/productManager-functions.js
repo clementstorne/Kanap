@@ -19,6 +19,8 @@ function displayProducts() {
       }
     })
     .catch(function (error) {
-      console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+      console.log(
+        "Il y a eu un problème avec l'opération fetch: " + error.message
+      );
     });
 }

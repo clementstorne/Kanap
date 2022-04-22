@@ -45,7 +45,7 @@ function createParagraph(content, parent, classToAdd) {
 }
 
 // Fonction qui crée une nouvelle option
-function createNewOption(value,parent) {
+function createNewOption(value, parent) {
   const newOption = createElement("option", parent, undefined, value);
   newOption.setAttribute("value", `${value}`);
   return newOption;

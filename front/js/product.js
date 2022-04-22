@@ -11,10 +11,13 @@ document
     colorChecker();
     quantityChecker();
     // S'il y a une erreur de saisie, on interrompt le processus
-    if (isAnInteger(productQuantity.value) === false || isQuantityValid(productQuantity.value) === false || productColor.value === "") {
+    if (
+      isAnInteger(productQuantity.value) === false ||
+      isQuantityValid(productQuantity.value) === false ||
+      productColor.value === ""
+    ) {
       event.preventDefault();
-    }
-    else {
+    } else {
       // On ajoute au panier l'id du produit, sa quantité et sa couleur
       let product = {
         id: getProductId(),

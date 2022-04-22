@@ -56,7 +56,9 @@ document.getElementById("order").addEventListener("click", function (event) {
         window.location = `./confirmation.html?orderId=${data.orderId}`;
       })
       .catch(function (error) {
-        console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+        console.log(
+          "Il y a eu un problème avec l'opération fetch: " + error.message
+        );
       });
   }
 });
