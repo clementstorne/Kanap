@@ -55,11 +55,7 @@ function displayCart() {
     let productId = cart[i].id;
     let productQuantity = cart[i].quantity;
     let productColor = cart[i].color;
-    displayProductInCart(
-      productId,
-      productQuantity,
-      productColor
-    );
+    displayProductInCart(productId, productQuantity, productColor);
   }
 }
 
@@ -96,8 +92,8 @@ function changeProductQuantity(productId, productColor, quantity) {
     else {
       saveCart(cart);
     }
-  // Actualise la page
-  document.location.reload();
+    // Actualise la page
+    document.location.reload();
   }
 }
 
