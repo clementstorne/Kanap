@@ -2,6 +2,7 @@ import * as elementHTML from "/clement/ClementStorne_5_25032022/front/js/functio
 import * as cart from "/clement/ClementStorne_5_25032022/front/js/functions/cart-functions.js";
 
 
+// à déplacer dans produit
 // Fonction qui crée la carte d'un produit
 export function createProductCard(productId, urlImage, altImage, titre, description) {
   // Création du lien vers la page produit
@@ -29,6 +30,7 @@ export function displayProducts() {
     })
     .then((data) => {
       for (let i = 0; i < data.length; i++) {
+        // produit.createProductCard
         createProductCard(
           data[i]._id,
           data[i].imageUrl,
@@ -43,10 +45,12 @@ export function displayProducts() {
     });
 }
 
+// à déplacer dans produits
 // Fonction qui récupère l'ID du produit dans l'URL de la page
 export function getProductId() {
   return new URL(location.href).searchParams.get("id");
 }
+
 
 // Fonction qui affiche les éléments de la page produit
 export function displayProductPage(id) {
@@ -56,6 +60,7 @@ export function displayProductPage(id) {
       return reponse.json();
     })
     .then((data) => {
+        /* étiquette du produit à mettre dans product-functions.js */
       // Modifie le titre de la page
       document.title = `${data.name}`;
       // Ajoute l'image dans la div avec la classe .item__img
@@ -71,6 +76,7 @@ export function displayProductPage(id) {
         elementHTML.createNewOption(`${data.colors[i]}`, document.getElementById("colors"));
         // document.getElementById("colors").appendChild(createNewOption(`${data.colors[i]}`));
       }
+      /* fin étiquette du produit à mettre dans product-functions.js */
     })
     .catch(function (erreur) {
       alert(erreur);
