@@ -1,4 +1,4 @@
-# ohmyfood
+# Kanap
 
 Projet n°5 du [parcours Développeur Web](https://openclassrooms.com/fr/paths/556-developpeur-web#path-tabs) d'OpenClassrooms : _Construisez un site e-commerce en JavaScript_.
 
